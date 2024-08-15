@@ -11,12 +11,10 @@ export async function GET(request: Request) {
   try {
     await client.connect();
 
-    // Choose a name for your database
-    const database = client.db("user_data_db");
+    const database = client.db("dbTest");
 
-    // Choose a name for your collection
-    const collection = database.collection("user_data_collection");
-    allData = await collection.find({}).toArray();
+    const collection = database.collection("colTest");
+    allData = await collection.find({}).limit(10).toArray();
     console.log(`allData = ${JSON.stringify(allData)}`);
 
   } catch (error) {
